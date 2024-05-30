@@ -9,9 +9,11 @@ import {
   SET_RESTAURANT_ID,
 } from "../constants/cartConstant";
 
+import { server } from "../main";
+
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(`http://localhost:4000/api/v1/eats/item/${id}`);
+    const { data } = await axios.get(`${server}api/v1/eats/item/${id}`);
     const fooditemData = data.data;
     const image =
       fooditemData.images && fooditemData.images.length > 0

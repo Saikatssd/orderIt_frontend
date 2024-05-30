@@ -40,7 +40,7 @@
 //     };
 
 //     const { data } = await axios.post(
-//       "http://localhost:4000/api/v1/users/login",
+//       "${server}api/v1/users/login",
 //       { email, password },
 //       config
 //     );
@@ -60,7 +60,7 @@
 //         "Content-Type": "multipart/form-data",
 //       },
 //     };
-//     const { data } = await axios.post("http://localhost:4000/api/v1/users/signup", userData, config);
+//     const { data } = await axios.post("${server}api/v1/users/signup", userData, config);
 //     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
 //     return data.data.user;
 //   } catch (error) {
@@ -76,7 +76,7 @@
 // export const loadUser = () => async (dispatch) => {
 //   try {
 //     dispatch({ type: LOAD_USER_REQUEST });
-//     const { data } = await axios.get("http://localhost:4000/api/v1/users/me");
+//     const { data } = await axios.get("${server}api/v1/users/me");
 //     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
 //   } catch (error) {
 //     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
@@ -91,7 +91,7 @@
 //       headers: { "Content-Type": "multipart/form-data" },
 //     };
 //     const { data } = await axios.put(
-//       "http://localhost:4000/api/v1/users/me/update",
+//       "${server}api/v1/users/me/update",
 //       userData,
 //       config
 //     );
@@ -113,7 +113,7 @@
 //       headers: { "Content-Type": "application/json" },
 //     };
 //     const { data } = await axios.put(
-//       "http://localhost:4000/api/v1/users/password/update",
+//       "${server}api/v1/users/password/update",
 //       passwords,
 //       config
 //     );
@@ -135,7 +135,7 @@
 //       headers: { "Content-Type": "application/json" },
 //     };
 //     const { data } = await axios.post(
-//       "http://localhost:4000/api/v1/users/forgetPassword",
+//       "${server}api/v1/users/forgetPassword",
 //       email,
 //       config
 //     );
@@ -157,7 +157,7 @@
 //       headers: { "Content-Type": "application/json" },
 //     };
 //     const { data } = await axios.patch(
-//       `http://localhost:4000/api/v1/users/resetPassword/${token}`,
+//       `${server}api/v1/users/resetPassword/${token}`,
 //       passwords,
 //       config
 //     );
@@ -174,7 +174,7 @@
 
 // export const logout = () => async (dispatch) => {
 //   try {
-//     await axios.get("http://localhost:4000/api/v1/users/logout");
+//     await axios.get("${server}api/v1/users/logout");
 //     dispatch({ type: LOGOUT_SUCCESS });
 //   } catch (error) {
 //     dispatch({
@@ -221,6 +221,8 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstant";
 
+import {server} from "../main"
+
 // // action for login
 // export const login = (email, password) => async (dispatch) => {
 //   try {
@@ -233,7 +235,7 @@ import {
 //     };
 
 //     const { data } = await axios.post(
-//       "http://localhost:4000/api/v1/users/login",
+//       "${server}api/v1/users/login",
 //       { email, password },
 //       config
 //     );
@@ -270,7 +272,7 @@ import {
 //         "Content-Type": "multipart/form-data",
 //       },
 //     };
-//     const { data } = await axios.post("http://localhost:4000/api/v1/users/signup", userData, config);
+//     const { data } = await axios.post("${server}api/v1/users/signup", userData, config);
 //     dispatch({
 //       type: REGISTER_USER_SUCCESS,
 //       payload: data.user,
@@ -302,7 +304,7 @@ import {
 //       type: LOAD_USER_REQUEST,
 //     });
 
-//     const { data } = await axios.get("http://localhost:4000/api/v1/users/me");
+//     const { data } = await axios.get("${server}api/v1/users/me");
 //     console.log("Load user data",data)
 
 //     dispatch({
@@ -348,7 +350,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "http://localhost:4000/api/v1/users/login",
+      `${server}api/v1/users/login`,
       { email, password },
       config
     );
@@ -386,7 +388,7 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post('http://localhost:4000/api/v1/users/signup', userData, config);
+    const { data } = await axios.post(`${server}api/v1/users/signup`, userData, config);
 
     // Store token in localStorage
     localStorage.setItem('token', data.token);
@@ -426,7 +428,7 @@ export const loadUser = () => async (dispatch) => {
       setAuthToken(token);
     }
 
-    const { data } = await axios.get("http://localhost:4000/api/v1/users/me");
+    const { data } = await axios.get(`${server}api/v1/users/me`);
 
     dispatch({
       type: LOAD_USER_SUCCESS,
@@ -455,7 +457,7 @@ export const updateProfile = (userData) => async (dispatch) => {
       headers: { "Content-Type": "multipart/form-data" },
     };
     const { data } = await axios.put(
-      "http://localhost:4000/api/v1/users/me/update",
+      `${server}api/v1/users/me/update`,
       userData,
       config
     );
@@ -480,7 +482,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
     const { data } = await axios.put(
-      "http://localhost:4000/api/v1/users/password/update",
+     `${server}api/v1/users/password/update`,
       passwords,
       config
     );
@@ -505,7 +507,7 @@ export const forgotPassword = (email) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
     const { data } = await axios.post(
-      "http://localhost:4000/api/v1/users/forgetPassword",
+      `${server}api/v1/users/forgetPassword`,
       email,
       config
     );
@@ -530,7 +532,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
     const { data } = await axios.patch(
-      `http://localhost:4000/api/v1/users/resetPassword/${token}`,
+      `${server}api/v1/users/resetPassword/${token}`,
       passwords,
       config
     );
@@ -550,7 +552,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get("http://localhost:4000/api/v1/users/logout");
+    await axios.get(`${server}api/v1/users/logout`);
 
     localStorage.removeItem("token");
     setAuthToken(null);

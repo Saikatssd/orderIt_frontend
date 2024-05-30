@@ -12,6 +12,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {server} from "../../main"
+
 // import { orderDetailsReducer } from "../../reducers/orderReducers";
 const options = {
   style: {
@@ -73,7 +75,7 @@ const Payment = () => {
         },
       };
       paymentData.description = "Payment for Fooditem purchase";
-      res = await axios.post("http://localhost:4000/api/v1/payment/payment/process", paymentData, config);
+      res = await axios.post(`${server}api/v1/payment/payment/process`, paymentData, config);
       const clientSecret = res.data.client_secret;
       if (!stripe || !elements) {
         return;

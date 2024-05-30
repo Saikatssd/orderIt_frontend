@@ -253,6 +253,7 @@ const Header = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.auth);
+  // console.log("user",user)
   const logoutHandler = () => {
     dispatch(logout());
     alert.success("Logged Out Successfully");

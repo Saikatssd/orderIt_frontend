@@ -76,7 +76,7 @@ import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import {server} from './main'
 
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
     async function getStripeApiKey() {
-      const { data } = await axios.get("http://localhost:4000/api/v1/payment/stripeapikey");
+      const { data } = await axios.get(`${server}api/v1/payment/stripeapikey`);
       // console.log("data:",data)
       // const { data } = await axios.get("api/v1/stripeapi");
       setStripeApiKey(data.stripeApiKey);

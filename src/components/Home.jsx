@@ -7,6 +7,7 @@ import {
 } from "../actions/restaurantAction";
 import Restaurant from "./Restaurant";
 
+
 import Message from "./Message";
 import { useDispatch, useSelector } from "react-redux";
 import CountRestaurant from "./CountRestaurant";
@@ -25,6 +26,9 @@ const Home = () => {
   useEffect(() => {
     if (restaurantsError) {
       return alert.error(restaurantsError);
+
+
+
     }
     dispatch(getRestaurants(keyword));
   }, [dispatch, restaurantsError, keyword]);

@@ -28,6 +28,7 @@ import {
 
 //Reducer for managing authentication-related state
 
+
 export const authReducer = (
   state = {
     user: {},

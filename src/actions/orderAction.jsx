@@ -12,6 +12,7 @@ import {
   ORDER_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/orderConstants";
+import {server} from "../main"
 //craete order
 
 export const createOrder = (order) => async (dispatch) => {
@@ -25,7 +26,7 @@ export const createOrder = (order) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post("http://localhost:4000/api/v1/eats/orders/new", order, config);
+    const { data } = await axios.post(`${server}api/v1/eats/orders/new`, order, config);
     dispatch({
       type: CREATE_ORDER_SUCCESS,
       payload: data,
@@ -43,7 +44,7 @@ export const createOrder = (order) => async (dispatch) => {
 //       type: MY_ORDER_REQUEST,
 //     });
 
-//     const { data } = await axios.get("http://localhost:4000/api/v1/eats/orders/me/myOrders");
+//     const { data } = await axios.get("${server}api/v1/eats/orders/me/myOrders");
 //     dispatch({
 //       type: MY_ORDER_SUCCESS,
 //       payload: data.orders,
@@ -56,7 +57,7 @@ export const createOrder = (order) => async (dispatch) => {
 export const myOrders = () => async (dispatch) => {
   try {
     dispatch({ type: MY_ORDER_REQUEST });
-    const { data } = await axios.get("http://localhost:4000/api/v1/eats/orders/me/myOrders");
+    const { data } = await axios.get(`${server}api/v1/eats/orders/me/myOrders`);
     dispatch({ type: MY_ORDER_SUCCESS, payload: data.orders });
   } catch (error) {
     dispatch({ type: MY_ORDER_FAIL, payload: error.response.data.message });
@@ -71,7 +72,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
       type: ORDER_DETAILS_REQUEST,
     });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/eats/orders/${id}`);
+    const { data } = await axios.get(`${server}api/v1/eats/orders/${id}`);
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data.order,

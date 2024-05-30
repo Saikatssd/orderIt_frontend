@@ -4,11 +4,12 @@ import {
   GET_MENU_FAIL,
 } from "../constants/menuConstant";
 import axios from "axios";
+import {server} from "../main"
 
 export const getMenus = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_MENU_REQUEST });
-    const response = await axios.get(`http://localhost:4000/api/v1/eats/stores/${id}/menus`);
+    const response = await axios.get(`${server}api/v1/eats/stores/${id}/menus`);
     dispatch({ type: GET_MENU_SUCCESS, payload: response.data.data[0].menu });
   } catch (error) {
     dispatch({ type: GET_MENU_FAIL, payload: error.message });
