@@ -27,8 +27,6 @@ const Home = () => {
     if (restaurantsError) {
       return alert.error(restaurantsError);
 
-
-
     }
     dispatch(getRestaurants(keyword));
   }, [dispatch, restaurantsError, keyword]);
