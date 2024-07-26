@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CheckoutSteps from "./CheckoutSteps";
-import { useAlert } from "react-alert";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder, clearErrors } from "../../actions/orderAction";
 import {
@@ -27,7 +27,7 @@ const options = {
 };
 
 const Payment = () => {
-  const alert = useAlert();
+
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
@@ -40,10 +40,10 @@ const Payment = () => {
   const { error } = useSelector((state) => state.newOrder);
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, error]);
+  }, [dispatch,  error]);
 
   const order = {
     orderItems: cartItems,
@@ -92,7 +92,7 @@ const Payment = () => {
       });
 
       if (result.error) {
-        alert.error(result.error.message);
+        toast.error(result.error.message);
         document.querySelector("#pay_btn").disabled = false;
       } else {
         if (result.paymentIntent.status === "succeeded") {
@@ -104,12 +104,12 @@ const Payment = () => {
           dispatch(createOrder(order));
           navigate("/success");
         } else {
-          alert.error("There is some issue while payment processing");
+          toast.error("There is some issue while payment processing");
         }
       }
     } catch (error) {
       document.querySelector("#pay_btn").disabled = false;
-      alert.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
   return (

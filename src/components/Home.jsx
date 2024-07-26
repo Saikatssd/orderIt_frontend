@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CountRestaurant from "./CountRestaurant";
 import { useParams } from "react-router-dom";
 import Loader from "./Layout/Loader";
+import { toast } from "react-hot-toast";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Home = () => {
   } = useSelector((state) => state.restaurants);
   useEffect(() => {
     if (restaurantsError) {
-      return alert.error(restaurantsError);
+      return toast.error(restaurantsError);
 
     }
     dispatch(getRestaurants(keyword));

@@ -77,6 +77,7 @@ import OrderDetails from "./components/order/OrderDetails";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import {server} from './main'
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -145,6 +146,7 @@ function App() {
         </div>
         <Footer />
       </div>
+      <Toaster />
     </Router>
   );
 }

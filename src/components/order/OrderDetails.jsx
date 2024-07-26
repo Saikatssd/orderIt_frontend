@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useAlert } from "react-alert";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,6 @@ import Loader from "../Layout/Loader";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 
 const OrderDetails = ({}) => {
-  const alert = useAlert();
   const dispatch = useDispatch();
   const { id } = useParams();
   const {
@@ -28,10 +27,10 @@ const OrderDetails = ({}) => {
   useEffect(() => {
     dispatch(getOrderDetails(id));
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, error, id]);
+  }, [dispatch,  error, id]);
   const deliveryDetails =
     deliveryInfo &&
     `${deliveryInfo.address}, ${deliveryInfo.city}, ${deliveryInfo.postalCode}, ${deliveryInfo.country}`;

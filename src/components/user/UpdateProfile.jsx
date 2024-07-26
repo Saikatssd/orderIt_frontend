@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useAlert } from "react-alert";
+import { toast } from "react-hot-toast";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   loadUser,
@@ -15,7 +16,6 @@ const UpdateProfile = () => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/images/images.png");
 
-  const alert = useAlert();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,19 +29,19 @@ const UpdateProfile = () => {
       setAvatarPreview(user.avatar.url);
     }
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (isUpdated) {
-      alert.success("user updated successfully");
+      toast.success("user updated successfully");
       dispatch(loadUser());
       navigate("/user/me");
       dispatch({
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, alert, error, navigate, isUpdated]);
+  }, [dispatch, error, navigate, isUpdated]);
 
   const submitHandler = (e) => {
     e.preventDefault();

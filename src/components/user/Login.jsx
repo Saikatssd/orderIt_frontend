@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Layout/Loader";
-import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const alert = useAlert();
+  
   const dispatch = useDispatch();
   const { isAuthenticated, loading, error } = useSelector(
     (state) => state.auth
@@ -20,10 +20,10 @@ const Login = () => {
       window.location.href = "/";
     }
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, error]);
+  }, [dispatch,isAuthenticated, error]);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
