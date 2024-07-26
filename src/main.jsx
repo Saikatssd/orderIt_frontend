@@ -12,12 +12,7 @@ export const server = "https://orderit-backend.onrender.com";
 // export const server = "http://localhost:4000/";
 
 
-const option = {
-  timeout: 5000,
-  position: positions.BOTTOM_CENTER,
-  transition: transitions.SCALE,
 
-};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
